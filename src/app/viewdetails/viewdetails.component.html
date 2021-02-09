@@ -1,0 +1,108 @@
+<h2 class="display-5 text-white">Service Details</h2>
+<p class="lead text-white mb-0">Details for <strong><i>{{singleBook.user_email}}</i></strong> on date: <strong>{{singleBook.book_date}}</strong> </p>
+<hr style="border: none;background-color: rgba(245, 245, 220, 0.11);height: 1px;">
+<h3 class="display-5 text-white" style="text-align: center;text-decoration: underline;">Service Sheet</h3>
+
+<div class="separator text-white row g-3">
+    <div class="col-md-12"><br></div>
+    <div class="col-md-6">
+        <label for="inputEmail4" class="form-label"><strong>Name: </strong>{{userData[0].user_name}}</label>
+      </div>               
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label"><strong>Booking Date: </strong>{{singleBook.book_date}}</label>
+      </div>
+      <div class="col-md-12"><br></div>
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label"><strong>Mobile No: </strong>{{userData[0].user_mobile}}</label>
+      </div>
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label"><strong>Kilometers: </strong>{{singleBook.book_kilometer}}</label>
+      </div>
+      <div class="col-md-12"><br></div>
+
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label"><strong>Vehicle: </strong>{{singleBook.book_vehicle}}</label>
+      </div>
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label"><strong>Vehicle Number: </strong>{{singleBook.book_vehicleNo}}</label>
+      </div>
+      <div class="col-md-12">
+          <br>
+          <p class="lead service" style="text-decoration: underline;">Service Required</p>
+      </div>
+      <div class="col-md-4">
+        <div class="form-check">
+            <label class="form-check-label" for="flexCheckDefault">
+             <strong>Change Oil & Filter: </strong>{{singleBook.bookservice_oilFilter}}
+            </label>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-check">
+            <label class="form-check-label" for="flexCheckDefault">
+              <strong>Lubrication: </strong>{{singleBook.bookservice_lubrication}}
+            </label>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-check">
+            <label class="form-check-label" for="flexCheckDefault">
+              <strong>Check Brakes: </strong> {{singleBook.bookservice_brakes}}
+            </label>
+          </div>
+      </div>
+      <div class="col-md-12"><br></div>
+      <div class="col-md-4">
+        <div class="form-check">
+            <label class="form-check-label" for="flexCheckDefault">
+              <strong>Engine Tune-up: </strong>{{singleBook.bookservice_engine}}
+            </label>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-check">
+            <label class="form-check-label" for="flexCheckDefault">
+              <strong>Check Spark Plug: </strong>{{singleBook.bookservice_plug}}
+            </label>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-check">
+            <label class="form-check-label" for="flexCheckDefault">
+              <strong>Check Battery: </strong>{{singleBook.bookservice_battery}}
+            </label>
+            <!-- <ng-template #nobattery>
+                *ngIf="singleBook.bookservice_battery;else nobattery"
+                <label class="form-check-label" for="flexCheckDefault">
+                    Check Battery: No
+                </label>
+            </ng-template> -->
+          </div>
+      </div>
+      <div class="col-md-12">
+        <br>
+        <p class="lead service" style="text-decoration: underline;"><strong>Other Service Needed:</strong></p>
+    </div>
+   <div class="col-md-12">
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">{{singleBook.bookservice_others}}</label>
+      </div>
+   </div>
+   <div class="col-md-12"><br></div>
+   <div class="col-md-12">
+    <br>
+    <p class="lead service" style="text-decoration: underline;"><strong>Admin Comments:</strong></p>
+   </div>
+   <div class="col-md-12">
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">{{singleBook.booking_admin}}</label>
+    </div>
+   </div>
+
+   <div class="col-md-6" *ngIf="singleBook.booking_completion">
+    <label for="inputEmail4" class="form-label lead service"><strong style="text-decoration: underline;">Serive Status: </strong>Complete</label>
+   </div>
+   <div class="col-md-6" *ngIf="singleBook.booking_completion">
+    <label for="inputEmail4" class="form-label lead service"><strong style="text-decoration: underline;">Amount: </strong>{{singleBook.booking_amount}}</label>
+  </div>
+</div>

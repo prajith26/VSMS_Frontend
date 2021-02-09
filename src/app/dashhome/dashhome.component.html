@@ -1,0 +1,267 @@
+<h2 class="display-5 text-white" style="font-family: 'Satisfy', cursive;letter-spacing: 3px;">{{name}}</h2>
+<p class="lead text-white mb-0">Please find a summary of your Service Request</p>
+<!-- <hr style="border: none;background-color: rgba(245, 245, 220, 0.11);height: 1px;"> -->
+<br>
+<!------------------------------------------------- ADMIN HTML----------------------------------------------->
+<div *ngIf="auth.isAdmin()">
+    <h4 class="display-5 text-white">Current Work Request</h4>
+    <hr style="border: none;background-color: rgba(245, 245, 220, 0.11);height: 1px;">
+    <div *ngIf="adminapproved.length>0;else current_none">
+            <table class="table table-secondary table-responsive-md">
+                <thead>
+                    <tr>
+                        <th scope="col">No:</th>
+                        <th scope="col">Email ID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Approved</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">View Details</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let booking of adminapproved;let i= index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{booking.user_email}}</td>
+                        <td>{{booking.book_date}}</td>
+                        <td>Approved</td>
+                        <td>Not Completed</td>
+                        <td>{{booking.booking_amount}}</td>
+                        <td>
+                            <button type="submit" class="btn btn-info" (click)="viewDetails(booking)">View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #current_none>
+            <p class="lead text-white mb-0">No Current Work Request</p>
+        </ng-template>
+    
+    <br>
+    <h4 class="display-5 text-white">Pending Work Request</h4>
+    <hr style="border: none;background-color: rgba(245, 245, 220, 0.11);height: 1px;">
+    <div *ngIf="adminpending.length>0;else current_none">
+            <table class="table table-secondary table-responsive-md">
+                <thead>
+                    <tr>
+                        <th scope="col">No:</th>
+                        <th scope="col">Email ID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Approved</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Approve/Reject</th>
+                        <th scope="col">View Details</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let booking of adminpending;let i= index">
+                        <th scope="row">{{i + 1}}</th>
+                        <td>{{booking.user_email}}</td>
+                        <td>{{booking.book_date}}</td>
+                        <td>Pending</td>
+                        <td>Not Completed</td>
+                        
+    
+                        <td>
+                            <div id="icon">
+                            <span (click)='accept(booking.user_email,booking.book_date)'><i class="fa fa-check fa-lg"  id="icons" aria-hidden="true"></i></span>
+                            <span (click)='reject(booking.user_email,booking.book_date)'><i class="fa fa-times fa-lg"  id="icons" aria-hidden="true"></i></span>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-info" (click)="viewDetails(booking)">View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #current_none>
+            <p class="lead text-white mb-0">No Current Work Request</p>
+        </ng-template>
+    
+    <br>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------- Normal USER HTML------------------------------------------>
+    <div *ngIf="!auth.isAdmin()">
+        <!-- Current Work Request -->
+    <h4 class="display-5 text-white">Current Work Request</h4>
+    <hr style="border: none;background-color: rgba(245, 245, 220, 0.11);height: 1px;">
+    <div *ngIf="approved.length>0;else current_none">
+            <table class="table table-secondary table-responsive-md">
+                <thead>
+                    <tr>
+                        <th scope="col">No:</th>
+                        <th scope="col">Email ID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Approved</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">View Details</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let booking of approved;let i= index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{booking.user_email}}</td>
+                        <td>{{booking.book_date}}</td>
+                        <td>Approved</td>
+                        <td>Not Completed</td>
+                        <!-- <td *ngIf="booking.booking_status;else not_apprvd">Approved</td> -->
+                        <!-- <ng-template #not_apprvd>
+                            <td>Pending</td>
+                        </ng-template> -->
+    
+                        <!-- <td *ngIf="booking.booking_completion;else not_compltd">Completed</td>
+                        <ng-template #not_compltd>
+                            <td>Not Completed</td>
+                        </ng-template> -->
+    
+                        <td>{{booking.booking_amount}}</td>
+                        <td>
+                            <button type="submit" class="btn btn-info" (click)="viewDetails(booking)">View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #current_none>
+            <p class="lead text-white mb-0">No Current Work Request</p>
+        </ng-template>
+    
+    <br>
+    <!-- Waiting for Approval -->
+    <h4 class="display-5 text-white">Waiting for Approval</h4>
+    <hr style="border: none;background-color: rgba(245, 245, 220, 0.11);height: 1px;">
+  
+        <div *ngIf="pending.length>0;else approval_none">
+            <table class="table table-secondary table-responsive-md">
+                <thead>
+                    <tr>
+                        <th scope="col">No:</th>
+                        <th scope="col">Email ID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Approved</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">View Details</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
+
+
+                        <!-- <th scope="col" *ngIf='booking.booking_amount!=null'>Amount</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let booking of pending;let i= index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{booking.user_email}}</td>
+                        <td>{{booking.book_date}}</td>
+                        <td>Pending</td>
+                        <td>Not Completed</td>
+                        <td>
+                            <button type="submit" class="btn btn-info" (click)="viewDetails(booking)">View</button>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-success" (click)="updateDetails(booking)">Update</button>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-danger" (click)="delete(booking)">Delete</button>
+                        </td>
+                        <!-- <td *ngIf="booking.booking_status;else not_apprvd">Approved</td> -->
+                        <!-- <ng-template #not_apprvd>
+                            <td>Pending</td>
+                        </ng-template> -->
+    
+                        <!-- <td *ngIf="booking.booking_completion;else not_compltd">Completed</td>
+                        <ng-template #not_compltd>
+                            <td>Not Completed</td>
+                        </ng-template> -->
+    
+                        <!-- <td *ngIf='booking.booking_amount!=null'>{{booking.booking_amount}}</td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+    <ng-template #approval_none>
+        <p class="lead text-white mb-0">No Request Pending for approval</p>
+    </ng-template>
+
+    
+    <br>
+    <!-- Completed -->
+    <h4 class="display-5 text-white">Completed</h4>
+    <hr style="border: none;background-color: rgba(245, 245, 220, 0.11);height: 1px;">
+        
+    <div *ngIf="confirmed.length>0;else not_compltd">
+        <table class="table table-secondary table-responsive-md">
+            <thead>
+                <tr>
+                    <th scope="col">No:</th>
+                    <th scope="col">Email ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Approved</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">View Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let booking of confirmed;let i= index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{booking.user_email}}</td>
+                    <td>{{booking.book_date}}</td>
+                    <td>Approved</td>
+                    <td>Completed</td>
+                    <!-- <td *ngIf="booking.booking_status;else not_apprvd">Approved</td> -->
+                    <!-- <ng-template #not_apprvd>
+                        <td>Pending</td>
+                    </ng-template> -->
+
+                    <!-- <td *ngIf="booking.booking_completion;else not_compltd">Completed</td>
+                    <ng-template #not_compltd>
+                        <td>Not Completed</td>
+                    </ng-template> -->
+
+                    <td>{{booking.booking_amount}}</td>
+                    <td>
+                        <button type="submit" class="btn btn-info" (click)="viewDetails(booking)">View</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ng-template #not_compltd>
+        <p class="lead text-white mb-0">No previous Records</p>
+    </ng-template>
+    </div>
+    
+
+    
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

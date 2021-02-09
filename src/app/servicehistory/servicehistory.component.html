@@ -1,0 +1,36 @@
+<h2 class="display-5 text-white">Service History</h2>
+<!-- <p class="lead text-white mb-0">Please fill out the details</p> -->
+<hr style="border: none;background-color: rgba(245, 245, 220, 0.11);height: 1px;">
+<div *ngIf="bookService.length>0;else current_none">
+    <table class="table table-secondary table-responsive-md">
+        <thead>
+            <tr>
+                <th scope="col">No:</th>
+                <th scope="col">Email ID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Vehicle</th>
+                <th scope="col">VehicleNo</th>
+                <th scope="col">Status</th>
+                <th scope="col">Amount</th>
+                <th scope="col">View Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let booking of bookService;let i= index">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{booking.user_email}}</td>
+                <td>{{booking.book_date}}</td>
+                <td>{{booking.book_vehicle}}</td>
+                <td>{{booking.book_vehicleNo}}</td>
+                <td *ngIf="booking.booking_completion">Complete</td>
+                <td>{{booking.booking_amount}}</td>
+                <td>
+                    <button type="submit" (click)="viewDetails(booking)" class="btn btn-info">View</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template #current_none>
+    <p class="lead text-white mb-0">No Current Work Request</p>
+</ng-template>

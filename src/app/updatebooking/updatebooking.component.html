@@ -1,0 +1,110 @@
+<h2 class="display-5 text-white">Update Booking Details</h2>
+<p class="lead text-white mb-0">Please fill out the details</p>
+<hr style="border: none;background-color: rgba(245, 245, 220, 0.11);height: 1px;">
+<div class="separator text-white">
+    <form class="row g-3" (ngSubmit)=updateBooking() #bookingForm="ngForm"> 
+        <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Name</label>
+            <input type="text" name="name"  #name="ngModel" [(ngModel)]="userdata.name" class="form-control" id="name" placeholder="Enter Name">
+          </div>               
+          <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Booking Date</label>
+            <input type="text" name="bookdate" #bookdate="ngModel" [(ngModel)]="newBook.book_date" class="form-control" id="inputPassword4" placeholder="DD-MM-YYYY">
+          </div>
+          <div class="col-md-12"><br></div>
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Mobile No</label>
+            <input type="text" name="mobile" #mobile="ngModel" [(ngModel)]="userdata.mobileno" class="form-control" id="inputEmail4" placeholder="Enter Mobile Number">
+          </div>
+          <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Kilometers</label>
+            <input type="text" name="kilometer" #kilometer="ngModel" [(ngModel)]="newBook.book_kilometer" class="form-control" id="inputPassword4" placeholder="Enter Kilometers run till date">
+          </div>
+          <div class="col-md-12"><br></div>
+
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Vehicle</label>
+            <input type="text" name="vehicle" #vehicle="ngModel" [(ngModel)]="newBook.book_vehicle" class="form-control" id="inputEmail4" placeholder="Enter Vehicle Name">
+          </div>
+          <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Vehicle Number</label>
+            <input type="text" name="vehicleNo" #vehicleNo="ngModel" [(ngModel)]="newBook.book_vehicleNo" class="form-control" id="inputPassword4" placeholder="Enter Vehicle Number">
+          </div>
+          <div class="col-md-12">
+              <br>
+              <p class="lead service">Service Required</p>
+          </div>
+          <div class="col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" name="oilFilter" #oilFilter="ngModel" [(ngModel)]="newBook.bookservice_oilFilter" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Change Oil & Filter
+                </label>
+              </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" name="lubrication" #lubrication="ngModel" [(ngModel)]="newBook.bookservice_lubrication" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Lubrication
+                </label>
+              </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" name="brakes" #brakes="ngModel" [(ngModel)]="newBook.bookservice_brakes" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Check Brakes
+                </label>
+              </div>
+          </div>
+          <div class="col-md-12"><br></div>
+          <div class="col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" name="engine" #engine="ngModel" [(ngModel)]="newBook.bookservice_engine" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Engine Tune-up
+                </label>
+              </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" name="plug"  #plug="ngModel" [(ngModel)]="newBook.bookservice_plug" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Check Spark Plug
+                </label>
+              </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-check">
+                <input class="form-check-input" name="battery"  #battery="ngModel" [(ngModel)]="newBook.bookservice_battery" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Check Battery
+                </label>
+              </div>
+          </div>
+          <div class="col-md-12">
+            <br>
+            <p class="lead service">Other Service Needed</p>
+        </div>
+       <div class="col-md-12">
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Provide Additional Service Needed</label>
+            <textarea name="addService"  #addService="ngModel" [(ngModel)]="newBook.bookservice_others" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter comments here"></textarea>
+          </div>
+       </div>
+       <div class="col-md-12"><br></div>
+       <button type="submit" class="btn btn-primary btn-lg mx-auto" [disabled]="bookdate.value==null ||kilometer.value==null || vehicle.value==null || vehicleNo.value==null">Submit</button>
+    </form>
+    <!-- {{bookdate.value | json}} -->
+    <!-- {{bookingForm.battery | json}} -->
+    <br><br>
+    <!-- <div class="row text-white">
+        <div class="col-lg-7">
+            <p class="lead">whatis going on</p>
+        </div>
+        <div class="col-lg-5">
+            <p class="lead">2nd column whatis going on</p>
+        </div>
+    </div> -->
+</div>

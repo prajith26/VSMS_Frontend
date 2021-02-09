@@ -1,0 +1,8 @@
+#mainNav{
+    z-index: 108;
+    position: fixed;
+}
+
+.container{
+    margin-left: 1.6rem;
+}

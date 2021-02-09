@@ -1,0 +1,32 @@
+<h2 class="display-5 text-white">Discussion</h2>
+<p class="lead text-white mb-0">Select the request</p>
+<hr style="border: none;background-color: rgba(245, 245, 220, 0.11);height: 1px;">
+
+<div class="container" *ngIf="bookService.length>0;else nodisc">
+    <table class="table table-secondary table-responsive-md">
+        <thead>
+            <tr>
+                <th scope="col">No:</th>
+                <th scope="col">Email ID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Vehicle</th>
+                <th scope="col">Conversation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let booking of bookService;let i= index">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{booking.user_email}}</td>
+                <td>{{booking.book_date}}</td>
+                <td>{{booking.book_vehicle}}</td>
+                <td>
+                    <button type="submit" (click)="viewDetails(booking.user_email)" class="btn btn-info">View</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #nodisc>
+    <p class="lead text-white mb-0">No Current Work Request</p>
+</ng-template>

@@ -1,0 +1,78 @@
+ <!-- Toggle Button -->
+ <button id="sidebarCollapse" type="button" class="btn btn-light bg-transparent text-white rounded shadow-sm togglebtn" (click)="toggle()">
+    <i class="fa fa-bars"></i>
+</button>
+<br>
+<br>
+<br>
+<!-- <div class="container">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded mx-auto" id="box">
+        <p>prajith</p>
+    </div>
+</div> -->
+
+
+<div class="bod">
+<!-- Vertical NavBar Starts -->
+    <div class="vertical-nav bg-white" id="sidebar">
+        <div class="py-4 px-3 mb-4 bg-light">
+            <div class="media d-flex align-items-center">
+                <div class="media-body">
+                    <h4 class="m-0">{{name}}</h4>
+                    <p class="font-weight-normal text-muted mb-0">{{role}}</p>
+                </div>
+                
+            </div>
+        </div>
+    
+        <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Dashboard</p>
+        
+        <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+                <a routerLink="dashhome" class="nav-link text-dark bg-light">
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="newbook"  *ngIf="auth.loggedIn() && !auth.getAdmin()" class="nav-link text-dark bg-light">
+                    New Booking
+                </a>
+            </li>
+            <!-- <li class="nav-item">
+                <a routerLink="workstatus" class="nav-link text-dark">
+                    Work Status
+                </a>
+            </li> -->
+            <li class="nav-item">
+                <a routerLink="discussion" *ngIf="auth.loggedIn() && !auth.getAdmin()" class="nav-link text-dark bg-light">
+                    Discussion
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="admindisco" *ngIf="auth.getAdmin()" class="nav-link text-dark bg-light">
+                    Discussion
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="servicehistory"  *ngIf="auth.getAdmin()" class="nav-link text-dark bg-light">
+                    Service History
+                </a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="billing"  *ngIf="auth.getAdmin()" class="nav-link text-dark bg-light">
+                    Billing
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Vertical NavBar Ends -->
+    
+    
+    <!-- Page Contents Starts here -->
+    
+    <div class="page-content p-5" id="content">
+        <!-- Contents -->
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

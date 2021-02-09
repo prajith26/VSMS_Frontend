@@ -1,0 +1,35 @@
+<h2 class="display-5 text-white">Discussion</h2>
+<p class="lead text-white mb-0">Regarding Current Service Request</p>
+<hr style="border: none;background-color: rgba(245, 245, 220, 0.11);height: 1px;">
+
+<form class="row g-3" (ngSubmit)="sendChat()" #chatForm="ngForm">
+    <div class="container" *ngFor="let chat of chatData">       
+            <div class="col-md-6 admin-msg" *ngIf="chat.msg_admin!=null">
+                <label>Admin:</label>
+                <p>{{chat.msg_admin}}</p>
+            </div>
+            <div class="col-md-12"><br></div>
+            <div class="col-md-6 user-msg" *ngIf="chat.msg_user!=null">
+                <label>User:</label>
+                <p>{{chat.msg_user}}</p>
+                <!-- <p>{{chat.msg_date}}</p> -->
+            </div>
+            <div class="col-md-12"><br></div>       
+    </div>
+    <div class="col-md-12">    
+        <br>
+        <hr style="border: none;background-color: rgba(245, 245, 220, 0.171);height: 1px;">
+    </div>
+
+    <div class=" col-md-10">
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="chatmsg" #chatmsg="ngModel" [(ngModel)]="msg.msg_user"></textarea>           
+          </div>
+    </div>
+    <!-- {{chatForm.value| json}} -->
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-warning btn-lg" [disabled]="chatmsg.value==null || chatmsg.value==''">Send</button>
+    </div>
+    
+</form>
+
